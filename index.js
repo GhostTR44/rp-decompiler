@@ -14,6 +14,20 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 
 client.once('ready', () => {
     console.log('Bot hazır!');
+
+    // Create the 'uploads' and 'decompiled' directories if they do not exist
+    const uploadsDir = path.join(__dirname, 'uploads');
+    const decompiledDir = path.join(__dirname, 'decompiled');
+
+    if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+        console.log('Uploads directory created.');
+    }
+
+    if (!fs.existsSync(decompiledDir)) {
+        fs.mkdirSync(decompiledDir, { recursive: true });
+        console.log('Decompiled directory created.');
+    }
 });
 
 const userProcessing = new Map();
